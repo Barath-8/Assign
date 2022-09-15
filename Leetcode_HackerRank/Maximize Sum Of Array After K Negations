@@ -1,0 +1,47 @@
+/*Given an integer array nums and an integer k, modify the array in the following way:
+
+choose an index i and replace nums[i] with -nums[i].
+You should apply this process exactly k times. You may choose the same index i multiple times.
+
+Return the largest possible sum of the array after modifying it in this way.*/
+
+
+class Solution {
+ 
+ 
+ public int largestSumAfterKNegations(int[] nums, int k) {
+        
+        Arrays.sort(nums);
+        
+        int index =0,
+            len = nums.length;
+        
+       
+        while(k>0){
+            
+            index%=len;
+            
+            if(nums[index] < 0)
+                nums[index] = -nums[index++];
+            else
+                break;
+            
+            k--;
+        }
+        
+        boolean isOdd = (k%2 != 0 )? true : false;
+        
+        Arrays.sort(nums);
+        
+        if(isOdd)
+            nums[0] = -nums[0];
+        
+        int sum=0;
+        
+        for(int i : nums){
+            sum+=i;
+        }
+        
+        return sum;
+    }
+}
