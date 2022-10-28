@@ -21,7 +21,7 @@ public class Ques1 {
 		
 		for(int i=0 ; i<str.length() ;i++) {
 			for(int j=i+1 ; j<=str.length() ; j++)
-				count +=getC(str.substring(i, j),str.substring(i+1));
+				count +=getC(str.substring(i, j),str.substring(i+1)); // to get posible anagram str1 in str2 
 		}
 		
 		return count;
