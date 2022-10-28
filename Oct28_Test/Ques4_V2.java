@@ -4,11 +4,12 @@ import java.util.HashMap;
 public class Ques4_V2 {
 	
 	//Equal arrays or not
+	// Using single map obj
 
 	public static void main(String[] args) {
 		
-		int nums1[]= {1,2,2},
-			nums2[]= {1,2,2,3};
+		int nums1[]= {1,2,0,3,4},
+			nums2[]= {1,4,3,2,0};
 		
 		System.out.println("The two arrays are "+getRes(nums1,nums2));
 
