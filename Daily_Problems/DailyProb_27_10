@@ -1,0 +1,113 @@
+import java.util.*;
+
+public class Trapping_Rain {
+	
+	public static void main(String[] args) {
+		
+		//strobo();
+
+		//System.out.println(pascal_tri(5));
+		
+		trapping_Water();
+	}
+	
+	private static void trapping_Water() {
+		
+		//int nums[]=	{0,1,0,2,1,0,1,3,2,1,2,1};
+		int nums[]=	{4,2,0,3,2,5};
+		
+		
+		int len = nums.length,
+			leftMax[] = new int[len],
+			rightMax[]= new int[len];
+		
+		int lmax = 0;
+		
+		for(int i=0 ; i<len ; i++) {
+			leftMax[i]=lmax;
+			
+			lmax = Math.max(nums[i], lmax);
+		}
+		
+		int rmax=0;
+		
+		for(int i=len-1 ; i>=0 ; i--) {
+			rightMax[i]=rmax;
+			rmax = Math.max(nums[i], rmax);
+		}
+		
+		int sum = 0 ;
+		
+		for(int i=0 ; i<len ; i++) {
+			int val = Math.min(leftMax[i],rightMax[i])-nums[i];
+			
+			if(val>0)
+				sum+=val;
+		}
+		
+		System.out.println(sum);
+		
+	}
+
+	static void strobo() {
+		Scanner sc = new Scanner(System.in);
+		System.out.println("Enter a number");
+		long num = sc.nextLong();
+		sc.close();
+		System.out.println(getRes(num));
+	}
+	
+	static String getRes(long num) {
+		
+		long temp = num,rev =0 ;
+		
+		while(temp>0) {
+			
+			int last = (int)temp%10;
+			
+			if(!isValidNum(last))
+				return "Not a strobogrammatic number ";
+			
+			if(last==6)
+				last=9;
+			else if(last==9)
+				last=6;
+			
+			rev = rev*10+last;
+			
+			temp/=10;
+		}
+		
+		if(rev!=num)
+			return "Not a strobogrammatic number ";
+		
+		
+		return "It is a strobogrammatic number";
+	}
+
+	private static boolean isValidNum(int last) {
+		
+		return last==0||last==1||last==6||last==8||last==9;
+	}
+
+	static List<List<Integer>> pascal_tri(int n){
+		List<List<Integer>> result = new ArrayList<>();
+		
+		for(int idx = 0 ; idx<n ; idx++) {
+			List<Integer> temp = new ArrayList<>();
+			
+			for(int i=0 ; i<=idx ; i++) {
+				if(i==0||i==idx)
+					temp.add(1);
+				else
+				if(idx-1>0)
+					temp.add(result.get(idx-1).get(i-1)+result.get(idx-1).get(i)); // to get the previous added list and add elements directly above its head
+				
+			}
+			result.add(temp);
+		}
+		
+		return result;
+		
+	}
+}
