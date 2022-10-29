@@ -5,12 +5,27 @@ public class DailyProb_30_10 {
 	public static void main(String[] args) {
 		
 		postFix();
+		bitwise_Mul();
+	}
 
+	private static void bitwise_Mul() {
+		
+		int num = 3;
+		
+//		int ans = mul_15(num); // multiply by 15
+//		int ans = mul_15(num)>>1; //multiply by 7.5
+		int ans = mul_15(num)>>4; // eval 15*n/16
+		System.out.println(ans);
+		
+	}
+
+	private static int mul_15(int num) {
+		return (num<<4)-num;
 	}
 
 	private static void postFix() {
 		
-		String eval = "138*+";
+		String eval = "545*+5/";
 		
 		System.out.println("The evaluated answer is : "+getRes(eval));
 		
